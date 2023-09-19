@@ -19,8 +19,6 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			if (!*format)
-				return (-1);
 			switch (*format)
 			{
 				case 'c':
