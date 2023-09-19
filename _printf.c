@@ -24,21 +24,21 @@ int _printf(const char *format, ...)
 			switch (*format)
 			{
 				case 'c':
-					count += write(1, &va_arg(arguments, int), 1);
+					count += _putchar(va_arg(arguments, int));
 					break;
 				case 's':
-					count += write(1, str, _strlen(str));
+					count += _strlen(va_arg(arguments, char*));
 					break;
 				case '%':
-					count += write(1, "%", 1);
+					count += _putchar('%');
 					break;
 				default:
-					write(1, format, 1);
+					_putchar(*format);
 			}
 		}
 		else
 		{
-			write(1, format, 1);
+			_putchar(*format);
 			count += 1;
 		}
 		format++;
