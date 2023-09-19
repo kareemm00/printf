@@ -1,9 +1,7 @@
 #include "main.h"
 /**
  * _printf - a function that produces output according to a format
- *
  * @format: a character string.
- *
  * Return: number of characters printed
 */
 int _printf(const char *format, ...)
@@ -21,22 +19,21 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+			if (!*format)
+				return (-1);
 			switch (*format)
 			{
 				case 'c':
-					_putchar(va_arg(arguments, int));
-					count += 1;
+					count = _putchar(va_arg(arguments, int), count);
 					break;
 				case 's':
 					count += _strlen(va_arg(arguments, char*));
 					break;
 				case '%':
-					_putchar('%');
-					count += 1;
+					count = _putchar('%', count);
 					break;
 				default:
 					_putchar(*format);
-					break;
 			}
 		}
 		else
