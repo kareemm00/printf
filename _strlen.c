@@ -15,20 +15,10 @@ int _strlen(char *s)
 	int length;
 	int count = 0;
 
-	char *str = va_arg(arguments, char *);
-
-	if (str == NULL)
-	{
-		printf("(null)");
-		count += 6;
-	}
-	else
-	{
 	for (length = 0; s[length] != '\0'; s++)
 	{
 		count += _putchar(s[length]);
 	}
 	return (count);
-	}
 }
 
