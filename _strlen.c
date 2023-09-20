@@ -15,7 +15,7 @@ int _strlen(char *s)
 	int length;
 	int count = 0;
 
-	for (length = 0; s[length] != '\0'; s++)
+	for (length = 0; s[length] != '\0'; length++)
 	{
 		count += _putchar(s[length]);
 	}

@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
 /**
  * _printf - a function that produces output according to a format
  * @format: a character string.
@@ -6,20 +8,20 @@
 */
 int _printf(const char *format, ...)
 {
-	int count = 0;
+	int count = 0, i;
 	va_list arguments;
 
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
 	va_start(arguments, format);
-	while (*format)
+	for (i = 0; format[i] != '\0'; )
 	{
-		if (*format == '%')
+		if (format[i] != '%')
 		{
-			format++;
-			switch (*format)
+			count += _putchar(format[i]);
+			i++;
+		}
+		else if (format[i] == '%' && format[i + 1] != ' ')
+		{
+			switch (format[i + 1])
 			{
 				case 'c':
 					count += _putchar(va_arg(arguments, int));
@@ -30,13 +32,18 @@ int _printf(const char *format, ...)
 				case '%':
 					count += _putchar('%');
 					break;
+				case 'd':
+					count += print_integers(va_arg(arguments, int));
+					break;
+				case 'i':
+					count += print_integers(va_arg(arguments, int));
+					break;
 				default:
-					_putchar(*format);
+					break;
 			}
-		else
-			count += _putchar(*format);
-		format++;
+			i += 2;
+		}
 	}
-	va_end(arguments);
 	return (count);
 }
+
