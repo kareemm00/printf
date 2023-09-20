@@ -32,7 +32,7 @@ int checker(const char *format, va_list arguments)
 			}
 				break;
 		case '%':
-			count += _putchar('%');
+			count += write(1, "%", 1);
 			break;
 		case 'd':
 			count += print_integers(arguments);
