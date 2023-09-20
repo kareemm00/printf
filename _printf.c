@@ -8,6 +8,7 @@ int _printf(const char *format, ...)
 {
 	int count = 0;
 	va_list arguments;
+	char *str;
 
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
@@ -25,11 +26,11 @@ int _printf(const char *format, ...)
 					count += _putchar(va_arg(arguments, int));
 					break;
 				case 's':
-					char *str = va_arg(arguments, char *);
+					str = (va_arg(arguments, char *));
 					if (str == NULL)
 					{
-						str = ("(null)");
-						write(1, format, 6);
+						str = "(null)";
+						write(1, str, 6);
 						count += 6;
 					}
 					else
@@ -39,8 +40,8 @@ int _printf(const char *format, ...)
 					count += _putchar('%');
 					break;
 				default:
-					_putchar(*format);
-			}
+					_putchar(*format); 
+			} 
 		}
 		else
 			count += _putchar(*format);
