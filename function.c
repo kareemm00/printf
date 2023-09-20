@@ -11,11 +11,14 @@ int checker(const char *format, va_list arguments)
 {
 	int count = 0;
 	char *str;
+	char x;
 
 	switch (*format)
 			{
 		case 'c':
-			count += _putchar(va_arg(arguments, int));
+			x = (va_arg(arguments, int));
+			write(1, &x, 1);
+			count++;
 			break;
 		case 's':
 			str = (va_arg(arguments, char *));

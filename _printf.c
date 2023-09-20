@@ -9,21 +9,28 @@ int _printf(const char *format, ...)
 	int count = 0;
 	va_list arguments;
 
-	if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 	va_start(arguments, format);
-	while (format)
-	{
-		if (*format == '%')
-		{
-			format++;
-			count += checker(format, arguments);
+	for( ; *format; format++)
+	{ if (*format == '%')
+		{ format++;
+			switch (*format) {
+				case 'c':
+					count += _putchar(va_arg(arguments, int));
+					break;
+				case 's':
+					count += _strlen(va_arg(arguments, char *));
+					break;
+				case '%':
+					
+					break;
+				default:
+					_putchar(*format);
+			}
 		}
 		else
 			count += _putchar(*format);
-		format++;
 	}
 	va_end(arguments);
 	return (count);
