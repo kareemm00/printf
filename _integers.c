@@ -44,4 +44,3 @@ int print_integers(va_list arguments)
 	_putchar(last + '0');
 	return (count);
 }
-}

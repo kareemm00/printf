@@ -34,9 +34,14 @@ int checker(const char *format, va_list arguments)
 		case '%':
 			count += _putchar('%');
 			break;
+		case 'd':
+			count += print_integers(arguments);
+			break;
+		case 'i':
+			count += print_integers(arguments);
+			break;
 			default:
 			_putchar(*format);
 			}
-
 	return (count);
 }
