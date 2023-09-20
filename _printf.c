@@ -14,10 +14,6 @@ int _printf(const char *format, ...)
 	va_start(arguments, format);
 	for (i = 0; format[i] != '\0'; )
 	{
-		if (format[i] == NULL)
-		{
-			_putchar("(null)");
-		}
 		if (format[i] != '%')
 		{
 			count += _putchar(format[i]);
@@ -31,7 +27,12 @@ int _printf(const char *format, ...)
 					count += _putchar(va_arg(arguments, int));
 					break;
 				case 's':
-					count += _strlen(va_arg(arguments, char *));
+					char *str = va_arg(arguments, char *);
+
+					if (str == NULL)
+						count += _strlen(str);
+					else
+						count += _putchar("(null)");
 					break;
 				case '%':
 					count += _putchar('%');
@@ -44,10 +45,7 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					break;
-			}
-			i += 2;
+			}			i += 2;
 		}
-	}
-	return (count);
+	}	return (count);
 }
-
