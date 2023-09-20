@@ -19,8 +19,26 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			count += checker(format, arguments);
-		}
+			switch (*format)
+			{
+				case 'c':
+					count += _putchar(va_arg(arguments, int));
+					break;
+				case 's':
+					count += _strlen(va_arg(arguments, char *));
+					break;
+				case '%':
+					count += _putchar('%');
+					break;
+				case 'd':
+					count += print_integers(va_arg(arguments, char *));
+					break;
+				case 'i':
+					count += print_integers(va_arg(arguments, char *));
+					break;
+				default:
+					_putchar(*format);
+			}
 		else
 			count += _putchar(*format);
 		format++;
