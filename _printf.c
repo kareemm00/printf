@@ -25,7 +25,15 @@ int _printf(const char *format, ...)
 					count += _putchar(va_arg(arguments, int));
 					break;
 				case 's':
-					count += _strlen(va_arg(arguments, char *));
+					char *str = va_arg(arguments, char *);
+					if (str == NULL)
+					{
+						str = ("(null)");
+						write(1, format, 6);
+						count += 6;
+					}
+					else
+						count += _strlen(va_arg(arguments, char *));
 					break;
 				case '%':
 					count += _putchar('%');
