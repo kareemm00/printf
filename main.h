@@ -8,6 +8,6 @@
 int _putchar(char c);
 int _printf(const char *format, ...);
 int _strlen(char *s);
-int print_integers(va_list arguments);
+int print_integers(int num);
 
 #endif
