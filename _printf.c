@@ -9,6 +9,7 @@
 int _printf(const char *format, ...)
 {
 	int count = 0, i;
+	char *str;
 	va_list arguments;
 
 	va_start(arguments, format);
@@ -27,12 +28,11 @@ int _printf(const char *format, ...)
 					count += _putchar(va_arg(arguments, int));
 					break;
 				case 's':
-					char *str = va_arg(arguments, char *);
+					str  = va_arg(arguments, char *);
 
 					if (str == NULL)
 						count += _strlen(str);
-					else
-						count += _putchar("(null)");
+					count += _putchar('(null)');
 					break;
 				case '%':
 					count += _putchar('%');
