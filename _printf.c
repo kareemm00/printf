@@ -8,31 +8,26 @@
 */
 int _printf(const char *format, ...)
 {
-	int count = 0, i;
-	char *str;
+	int count = 0, p;
 	va_list arguments;
 
 	va_start(arguments, format);
-	for (i = 0; format[i] != '\0'; )
+	for (p = 0; format[p] != '\0'; )
 	{
-		if (format[i] != '%')
+		if (format[p] != '%')
 		{
-			count += _putchar(format[i]);
-			i++;
+			count += _putchar(format[p]);
+			p++;
 		}
-		else if (format[i] == '%' && format[i + 1] != ' ')
+		else if (format[p] == '%' && format[p + 1] != ' ')
 		{
-			switch (format[i + 1])
+			switch (format[p + 1])
 			{
 				case 'c':
 					count += _putchar(va_arg(arguments, int));
 					break;
 				case 's':
-					str  = va_arg(arguments, char *);
-
-					if (str == NULL)
-						count += _strlen(str);
-					count += write(1, "(null)", 6);
+					count += _strlen(va_arg(arguments, char *));
 					break;
 				case '%':
 					count += _putchar('%');
@@ -45,7 +40,9 @@ int _printf(const char *format, ...)
 					break;
 				default:
 					break;
-			}			i += 2;
+			}
+			p += 2;
 		}
-	}	return (count);
+	}
+	return (count);
 }
