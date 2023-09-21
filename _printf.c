@@ -32,7 +32,7 @@ int _printf(const char *format, ...)
 
 					if (str == NULL)
 						count += _strlen(str);
-					count += _putchar('(null)');
+					count += write(1, "(null)", 6);
 					break;
 				case '%':
 					count += _putchar('%');
